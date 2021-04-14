@@ -17,20 +17,24 @@
       <button id="btn">搜索</button>
     </div>
   </header>
-  <ul class="book-wrap">
-    <% book.forEach(item => { %>
-      <li class="book-item">
-        <img src="<%- item.img -%>" alt="">
-        <p class="title"><%- item.name -%></p>
-        <p class="title"><%- item.shopnum -%></p>
-        <p>
-          <% item.icons.forEach(icon => { %>
-            <span class="title"><%- icon -%></span>
-          <% }) %>
-        </p>
-      </li>
-    <% }) %>
-  </ul>
+  <% if(book.length > 0) { %>
+    <ul class="book-wrap">
+      <% book.forEach(item => { %>
+        <li class="book-item">
+          <img src="<%- item.img -%>" alt="">
+          <p class="title"><%- item.name -%></p>
+          <p class="title"><%- item.shopnum -%></p>
+          <p>
+            <% item.icons.forEach(icon => { %>
+              <span class="title"><%- icon -%></span>
+            <% }) %>
+          </p>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <h2>暂无数据</h2>
+  <% } %>
 <script>
   const btn = document.querySelector('#btn')
   const ipt = document.querySelector("#search")
