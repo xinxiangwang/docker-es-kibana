@@ -80,18 +80,24 @@ app.get('/', (req, res) => {
 })
 
 app.get('/zzz', async (req, res) => {
-  for (let i = 3; i < 20; i++) {
-    const bookText = await getBook(i, 'docker')
-    try {
-      bookList = parseDom(bookText)
-      const hasConnect = checkConnection()
-      inputData(hasConnect, bookList)
-      console.log(i)
-    } catch(err) {
-      // res.json('错误信息' + err)
+  const { page, keywords } = req.query
+  if (page && keywords) {
+    for (let i = 3; i < page; i++) {
+      const bookText = await getBook(i, keywords)
+      try {
+        bookList = parseDom(bookText)
+        const hasConnect = checkConnection()
+        inputData(hasConnect, bookList)
+        console.log(i)
+      } catch(err) {
+        // res.json('错误信息' + err)
+      }
     }
+    res.send('爬取结束')
+  } else {
+    res.send('请求链接模板：/zzz?page=50&keywords=docker--------------- page为爬取的页数总数, keywords为京东搜索的关键字')
   }
-  res.send('爬取结束')
+  
 })
 
 app.get('/search', (req, res) => {
