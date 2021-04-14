@@ -99,12 +99,11 @@ app.get('/search', (req, res) => {
     const book = esData.hits.hits.map(item => {
       return { ...item._source, ...item.highlight }
     })
-    console.log(esData)
     const { total, max_score } = esData.hits
     res.render('index.ejs', { book, total, max_score })
   }).catch(err => {
     console.log(err)
-    res.render('index.ejs', {})
+    res.render('index.ejs', { book: [], total: 0, max_score: 0 })
   })
 })
 

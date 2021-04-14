@@ -1,7 +1,7 @@
 version: "3"
 services:
   nodejs:
-    container_name: node_api
+    container_name: node-api
     ports:
       - "49160:8080"
     build: .
@@ -11,6 +11,21 @@ services:
       - PORT=8080
     volumes:
       - ./:/usr/node/node-docker/
+  es-head:
+    container_name: node-elasticsearch-head
+    ports:
+      - "9100:9100"
+    build:
+      context: .
+      dockerfile: ./Dockerfile.es.head
+  kibana:
+    image: kibana:7.12.0
+    container_name: node-kibana
+    ports:
+      - "5601:5601"
+    restart: "always"
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml
   elasticsearch:
     container_name: node-elasticsearch
     build:
