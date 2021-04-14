@@ -82,7 +82,7 @@ app.get('/', (req, res) => {
 app.get('/zzz', async (req, res) => {
   const { page, keywords } = req.query
   if (page && keywords) {
-    for (let i = 3; i < page; i++) {
+    for (let i = 1; i < page; i++) {
       const bookText = await getBook(i, keywords)
       try {
         bookList = parseDom(bookText)
@@ -90,7 +90,8 @@ app.get('/zzz', async (req, res) => {
         inputData(hasConnect, bookList)
         console.log(i)
       } catch(err) {
-        // res.json('错误信息' + err)
+        res.json('错误信息' + err)
+        return
       }
     }
     res.send('爬取结束')
