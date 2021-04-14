@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="/imgs/logo.png" alt="">
+    </div>
+    <div class="form">
+      <input type="text" id="search">
+      <button id="btn">搜索</button>
+    </div>
+  </header>
+  <ul class="book-wrap">
+    <% book.forEach(item => { %>
+      <li class="book-item">
+        <img src="<%- item.img -%>" alt="">
+        <p class="title"><%- item.name -%></p>
+        <p class="title"><%- item.shopnum -%></p>
+        <p>
+          <% item.icons.forEach(icon => { %>
+            <span class="title"><%- icon -%></span>
+          <% }) %>
+        </p>
+      </li>
+    <% }) %>
+  </ul>
+<script>
+  const btn = document.querySelector('#btn')
+  const ipt = document.querySelector("#search")
+
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+  }
+  ipt.value = getQueryVariable('val') || ''
+
+  btn.addEventListener('click', function() {
+    let queryStr = '/search'
+    if (ipt.value !== '') {
+      queryStr += '?val=' + ipt.value
+    }
+    window.location = queryStr
+  })
+</script>
+</body>
+</html>

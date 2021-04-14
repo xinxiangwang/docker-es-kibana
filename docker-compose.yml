@@ -1,0 +1,27 @@
+version: "3"
+services:
+  nodejs:
+    container_name: node_api
+    ports:
+      - "49160:8080"
+    build: .
+    environment:
+      - NODE_ENV=local
+      - ES_HOST=elasticsearch
+      - PORT=8080
+    volumes:
+      - ./:/usr/node/node-docker/
+  elasticsearch:
+    container_name: node-elasticsearch
+    build:
+      context: .
+      dockerfile: ./Dockerfile.es
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ports:
+      - "9300:9300"
+      - "9200:9200"
+    volumes:
+      - ./esData:/usr/share/elasticsearch/data

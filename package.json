@@ -1,0 +1,19 @@
+{
+  "name": "node-docker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wxx",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "colors": "^1.4.0",
+    "ejs": "^3.1.6",
+    "elasticsearch": "^16.7.2",
+    "express": "^4.17.1",
+    "superagent": "^6.1.0"
+  }
+}
