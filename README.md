@@ -1,7 +1,7 @@
 ## 简介
 此项目主要是用来学习在docker中部署nodejs连接elasticsearch，同时对elasticsearch进行相关配置
 
-搭建了一个包括nodejs，elasticsearch(elasticsearch-analysis-ik， elasticsearch-head)，kibana 的环境
+搭建了一个包括nodejs，elasticsearch(elasticsearch-analysis-ik， elasticsearch-head)，kibana 的环境， 使用nodemon实现本地修改代码 容器内node程序自动重启
 
 #### 流程
 
