@@ -5,7 +5,7 @@
 
 #### 流程
 
-1. 进入项目根目录 建立esData文件夹 执行docker-compose up
+1. 进入项目根目录 执行 mkdir esData && docker-compose up
 
 2. 运行成功访问在本地会有三个端口访问 localhost
    - 49160：nodejs应用程序
